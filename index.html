@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>琺瑯報價系統</title>
+  <title>JFE琺瑯報價系統 (成片規格品)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -28,7 +28,7 @@
       text-align: center;
     }
     .header h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
-    .header p { font-size: 0.85rem; opacity: 0.8; }
+    .header p { font-size: 0.85rem; opacity: 0.8; display: flex; align-items: center; justify-content: center; gap: 4px; }
     .section { padding: 20px 24px; border-bottom: 1px solid #eee; }
     .section-title {
       font-size: 0.95rem;
@@ -122,14 +122,23 @@
     }
     .note strong { color: #b36b00; }
     .footer { text-align: center; padding: 16px; font-size: 0.78rem; color: #aaa; }
+    .version {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      margin-left: 8px;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
   <div class="header">
-    <h1>🔧 琺瑯報價系統</h1>
-    <p>含稅含運 · 快速估價</p>
+    <h1>🔧 JFE琺瑯報價系統 (成片規格品)</h1>
+    <p>含稅含運 · 快速估價　　<span id="version">V0400</span></p>
   </div>
 
   <!-- 客戶資料 -->
