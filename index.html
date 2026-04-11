@@ -94,10 +94,13 @@
       padding: 0 4px;
     }
     .zone-row {
-      display: grid;
+      display: none;
       grid-template-columns: 36px 1fr 1fr 80px;
       gap: 8px;
       align-items: center;
+    }
+    .zone-row.zone-visible {
+      display: grid;
     }
     .zone-num {
       font-size: 0.82rem;
@@ -254,47 +257,52 @@
         <span>寬 (cm)</span>
         <span>週長小計</span>
       </div>
-      <div class="zone-row">
-        <span class="zone-num">1</span>
-        <input type="number" id="zone-l-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
-        <input type="number" id="zone-w-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
-        <span class="zone-subtotal" id="zone-sub-1">0 cm</span>
+      <div id="zone-list">
+        <div class="zone-row zone-visible" data-zone="1">
+          <span class="zone-num">1</span>
+          <input type="number" id="zone-l-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
+          <input type="number" id="zone-w-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
+          <span class="zone-subtotal" id="zone-sub-1">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="2">
+          <span class="zone-num">2</span>
+          <input type="number" id="zone-l-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
+          <input type="number" id="zone-w-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
+          <span class="zone-subtotal" id="zone-sub-2">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="3">
+          <span class="zone-num">3</span>
+          <input type="number" id="zone-l-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
+          <input type="number" id="zone-w-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
+          <span class="zone-subtotal" id="zone-sub-3">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="4">
+          <span class="zone-num">4</span>
+          <input type="number" id="zone-l-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
+          <input type="number" id="zone-w-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
+          <span class="zone-subtotal" id="zone-sub-4">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="5">
+          <span class="zone-num">5</span>
+          <input type="number" id="zone-l-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
+          <input type="number" id="zone-w-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
+          <span class="zone-subtotal" id="zone-sub-5">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="6">
+          <span class="zone-num">6</span>
+          <input type="number" id="zone-l-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
+          <input type="number" id="zone-w-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
+          <span class="zone-subtotal" id="zone-sub-6">0 cm</span>
+        </div>
+        <div class="zone-row" data-zone="7">
+          <span class="zone-num">7</span>
+          <input type="number" id="zone-l-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
+          <input type="number" id="zone-w-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
+          <span class="zone-subtotal" id="zone-sub-7">0 cm</span>
+        </div>
       </div>
-      <div class="zone-row">
-        <span class="zone-num">2</span>
-        <input type="number" id="zone-l-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
-        <input type="number" id="zone-w-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
-        <span class="zone-subtotal" id="zone-sub-2">0 cm</span>
-      </div>
-      <div class="zone-row">
-        <span class="zone-num">3</span>
-        <input type="number" id="zone-l-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
-        <input type="number" id="zone-w-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
-        <span class="zone-subtotal" id="zone-sub-3">0 cm</span>
-      </div>
-      <div class="zone-row">
-        <span class="zone-num">4</span>
-        <input type="number" id="zone-l-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
-        <input type="number" id="zone-w-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
-        <span class="zone-subtotal" id="zone-sub-4">0 cm</span>
-      </div>
-      <div class="zone-row">
-        <span class="zone-num">5</span>
-        <input type="number" id="zone-l-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
-        <input type="number" id="zone-w-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
-        <span class="zone-subtotal" id="zone-sub-5">0 cm</span>
-      </div>
-      <div class="zone-row">
-        <span class="zone-num">6</span>
-        <input type="number" id="zone-l-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
-        <input type="number" id="zone-w-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
-        <span class="zone-subtotal" id="zone-sub-6">0 cm</span>
-      </div>
-      <div class="zone-row">
-        <span class="zone-num">7</span>
-        <input type="number" id="zone-l-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
-        <input type="number" id="zone-w-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
-        <span class="zone-subtotal" id="zone-sub-7">0 cm</span>
+      <div id="add-zone-btn" style="margin-top:8px; text-align:center;">
+        <button onclick="addZone()" style="background:#e8f0fb; border:1px solid #2c5ea8; color:#2c5ea8; padding:6px 16px; border-radius:6px; font-size:0.85rem; cursor:pointer;">+ 新增施工範圍</button>
       </div>
     </div>
   </div>
@@ -367,6 +375,7 @@
   const ADDITIONAL_INSTALL = 2000;
   const TAX_RATE = 0.10;
   const TOTAL_ZONES = 7;
+  let activeZones = 1;
 
   function get(id) {
     return parseFloat(document.getElementById(id).value) || 0;
@@ -385,6 +394,18 @@
   function calculateZone(n) {
     const sub = getZonePerimeter(n);
     document.getElementById('zone-sub-' + n).textContent = sub.toLocaleString() + ' cm';
+    calculate();
+  }
+
+  function addZone() {
+    if (activeZones >= TOTAL_ZONES) return;
+    activeZones++;
+    const zoneList = document.getElementById('zone-list');
+    const zones = document.querySelectorAll('.zone-row');
+    zones[activeZones - 1].classList.add('zone-visible');
+    if (activeZones >= TOTAL_ZONES) {
+      document.getElementById('add-zone-btn').style.display = 'none';
+    }
     calculate();
   }
 
