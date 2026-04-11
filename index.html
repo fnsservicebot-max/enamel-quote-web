@@ -79,6 +79,47 @@
     .field-row input:focus { outline: none; border-color: #2c5ea8; }
     .field-hint { font-size: 0.78rem; color: #999; margin-top: 4px; }
 
+    /* 施工區域 */
+    .zone-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .zone-header {
+      display: grid;
+      grid-template-columns: 36px 1fr 1fr 80px;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #999;
+      padding: 0 4px;
+    }
+    .zone-row {
+      display: grid;
+      grid-template-columns: 36px 1fr 1fr 80px;
+      gap: 8px;
+      align-items: center;
+    }
+    .zone-num {
+      font-size: 0.82rem;
+      color: #aaa;
+      text-align: center;
+    }
+    .zone-row input {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+    .zone-row input:focus { outline: none; border-color: #2c5ea8; }
+    .zone-subtotal {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: right;
+      padding-right: 4px;
+    }
+
     /* 客戶資料 */
     .field-grid {
       display: grid;
@@ -206,19 +247,54 @@
   <div class="section">
     <div class="section-title">📐 施工範圍（計算收邊條）</div>
 
-    <div class="field-row">
-      <label>施工區域寬度</label>
-      <div>
-        <input type="number" id="width" min="0" max="2000" value="0" placeholder="公分" oninput="calculate()">
-        <div class="field-hint">單位：公分</div>
+    <div class="zone-grid">
+      <div class="zone-header">
+        <span></span>
+        <span>長 (cm)</span>
+        <span>寬 (cm)</span>
+        <span>週長小計</span>
       </div>
-    </div>
-
-    <div class="field-row">
-      <label>施工區域高度</label>
-      <div>
-        <input type="number" id="height" min="0" max="2000" value="0" placeholder="公分" oninput="calculate()">
-        <div class="field-hint">單位：公分</div>
+      <div class="zone-row">
+        <span class="zone-num">1</span>
+        <input type="number" id="zone-l-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
+        <input type="number" id="zone-w-1" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(1)">
+        <span class="zone-subtotal" id="zone-sub-1">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">2</span>
+        <input type="number" id="zone-l-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
+        <input type="number" id="zone-w-2" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(2)">
+        <span class="zone-subtotal" id="zone-sub-2">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">3</span>
+        <input type="number" id="zone-l-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
+        <input type="number" id="zone-w-3" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(3)">
+        <span class="zone-subtotal" id="zone-sub-3">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">4</span>
+        <input type="number" id="zone-l-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
+        <input type="number" id="zone-w-4" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(4)">
+        <span class="zone-subtotal" id="zone-sub-4">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">5</span>
+        <input type="number" id="zone-l-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
+        <input type="number" id="zone-w-5" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(5)">
+        <span class="zone-subtotal" id="zone-sub-5">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">6</span>
+        <input type="number" id="zone-l-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
+        <input type="number" id="zone-w-6" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(6)">
+        <span class="zone-subtotal" id="zone-sub-6">0 cm</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-num">7</span>
+        <input type="number" id="zone-l-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
+        <input type="number" id="zone-w-7" min="0" max="2000" value="0" placeholder="0" oninput="calculateZone(7)">
+        <span class="zone-subtotal" id="zone-sub-7">0 cm</span>
       </div>
     </div>
   </div>
@@ -290,6 +366,7 @@
   const BASE_INSTALL = 5000;
   const ADDITIONAL_INSTALL = 2000;
   const TAX_RATE = 0.10;
+  const TOTAL_ZONES = 7;
 
   function get(id) {
     return parseFloat(document.getElementById(id).value) || 0;
@@ -299,12 +376,22 @@
     return '$' + Math.round(n).toLocaleString();
   }
 
+  function getZonePerimeter(n) {
+    const l = get('zone-l-' + n);
+    const w = get('zone-w-' + n);
+    return (l + w) * 2;
+  }
+
+  function calculateZone(n) {
+    const sub = getZonePerimeter(n);
+    document.getElementById('zone-sub-' + n).textContent = sub.toLocaleString() + ' cm';
+    calculate();
+  }
+
   function calculate() {
     const qty240 = get('qty-240x89');
     const qty300 = get('qty-300x89');
     const qty240_121 = get('qty-240x121');
-    const width = get('width');
-    const height = get('height');
     const holes = get('holes');
 
     const totalPanels = qty240 + qty300 + qty240_121;
@@ -320,8 +407,11 @@
       ? BASE_INSTALL
       : BASE_INSTALL + (totalPanels - 2) * ADDITIONAL_INSTALL;
 
-    const perimeter = (width + height) * 2;
-    const edgeTotal = perimeter * EDGE_PRICE;
+    let totalPerimeter = 0;
+    for (let i = 1; i <= TOTAL_ZONES; i++) {
+      totalPerimeter += getZonePerimeter(i);
+    }
+    const edgeTotal = totalPerimeter * EDGE_PRICE;
 
     const subtotal = panelTotal + holeTotal + installFee + edgeTotal;
     const tax = subtotal * TAX_RATE;
@@ -331,7 +421,7 @@
     document.getElementById('hole-count').textContent = holes;
     document.getElementById('hole-total').textContent = fmt(holeTotal);
     document.getElementById('install-fee').textContent = fmt(installFee);
-    document.getElementById('perimeter').textContent = perimeter.toLocaleString();
+    document.getElementById('perimeter').textContent = totalPerimeter.toLocaleString();
     document.getElementById('edge-total').textContent = fmt(edgeTotal);
     document.getElementById('subtotal').textContent = fmt(subtotal);
     document.getElementById('tax').textContent = fmt(tax);
